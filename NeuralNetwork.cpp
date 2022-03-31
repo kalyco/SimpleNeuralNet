@@ -1,6 +1,19 @@
 #include "NeuralNetwork.hpp"
 #include <stdint.h>
 
+
+Scalar activationFunction(Scalar x)
+{
+    return tanhf(x);
+}
+ 
+Scalar activationFunctionDerivative(Scalar x)
+{
+    return 1 - tanhf(x) * tanhf(x);
+}
+// you can use your own code here!
+
+
 // constructor of neural network class
 NeuralNetwork::NeuralNetwork(std::vector<uint> topology, Scalar learningRate)
 {
@@ -102,17 +115,6 @@ void NeuralNetwork::propagateBackward(RowVector& output)
     calcErrors(output);
     updateWeights();
 }
-
-Scalar activationFunction(Scalar x)
-{
-    return tanhf(x);
-}
- 
-Scalar activationFunctionDerivative(Scalar x)
-{
-    return 1 - tanhf(x) * tanhf(x);
-}
-// you can use your own code here!
 
 
 void NeuralNetwork::train(std::vector<RowVector*> input_data, std::vector<RowVector*> output_data)

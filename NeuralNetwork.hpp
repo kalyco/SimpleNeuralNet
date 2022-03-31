@@ -29,7 +29,7 @@ public:
     void updateWeights();
  
     // function to train the neural network give an array of data points
-    void train(std::vector<RowVector*> data);
+    void train(std::vector<RowVector*> input_data, std::vector<RowVector*> output_data);
  
     // storage objects for working of neural network
     /*
@@ -38,6 +38,7 @@ public:
           it also makes our neural network class less heavy!! It would be nice if you can use
           smart pointers instead of usual ones like this
         */
+    std::vector<uint> topology;
     std::vector<RowVector*> neuronLayers; // stores the different layers of out network
     std::vector<RowVector*> cacheLayers; // stores the unactivated (activation fn not yet applied) values of layers
     std::vector<RowVector*> deltas; // stores the error contribution of each neurons
